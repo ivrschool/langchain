@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "docarray>=0.41.0",
+    "google-genai>=1.20.0",
     "ipykernel>=6.29.5",
     "jupyter>=1.1.1",
     "jupyter-bokeh>=4.0.5",
