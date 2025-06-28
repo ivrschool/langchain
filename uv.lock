@@ -930,6 +930,7 @@ dependencies = [
     { name = "pypdf" },
     { name = "tavily-python" },
     { name = "tiktoken" },
+    { name = "youtube-transcript-api" },
 ]
 
 [package.dev-dependencies]
@@ -950,6 +951,7 @@ requires-dist = [
     { name = "pypdf", specifier = ">=5.6.0" },
     { name = "tavily-python", specifier = ">=0.7.6" },
     { name = "tiktoken", specifier = ">=0.9.0" },
+    { name = "youtube-transcript-api", specifier = ">=1.1.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -2267,6 +2269,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/00/af/c0f7f97bb320d14c089476f487b81f733238cc5603e0914f2e409f49d589/xyzservices-2025.4.0.tar.gz", hash = "sha256:6fe764713648fac53450fbc61a3c366cb6ae5335a1b2ae0c3796b495de3709d8", size = 1134722, upload-time = "2025-04-25T10:38:09.669Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d6/7d/b77455d7c7c51255b2992b429107fab811b2e36ceaf76da1e55a045dc568/xyzservices-2025.4.0-py3-none-any.whl", hash = "sha256:8d4db9a59213ccb4ce1cf70210584f30b10795bff47627cdfb862b39ff6e10c9", size = 90391, upload-time = "2025-04-25T10:38:08.468Z" },
+]
+
+[[package]]
+name = "youtube-transcript-api"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "defusedxml" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/36/dd/10d413b20a2d14fa483853d0f6d920a0a0a6887d7c60167e4641733f99fb/youtube_transcript_api-1.1.0.tar.gz", hash = "sha256:786d9e64bd7fffee0dbc1471a61a798cebdc379b9cf8f7661d3664e831fcc1a5", size = 470144, upload-time = "2025-06-11T22:30:44.048Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b3/69/63f1b9f96a9d3b6bd35288fe27f987c41bd157e47b3d07ca025549e3f8e6/youtube_transcript_api-1.1.0-py3-none-any.whl", hash = "sha256:876ac42b1e3f8cc99b81d8fd810bd74ed07511e51dff5db50e714e3156ad3595", size = 485739, upload-time = "2025-06-11T22:30:40.515Z" },
 ]
 
 [[package]]

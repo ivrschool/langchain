@@ -12,3 +12,5 @@ wheels/
 .venv
 
 .env
+youtube_subtitle_extractor.ipynb
+output_test.txt
