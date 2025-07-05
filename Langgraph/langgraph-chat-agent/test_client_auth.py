@@ -3,7 +3,6 @@ import asyncio
 from langgraph_sdk import get_client
 
 async def test_auth(token: str | None):
-    client = get_client(url="http://localhost:2024")
 
     # Authenticated client
     client = get_client(
