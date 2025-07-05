@@ -1,9 +1,10 @@
 [project]
-name = "langchain"
+name = "lang-graph-auth"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
+
 dependencies = [
     "chromadb>=1.0.13",
     "docarray>=0.41.0",
@@ -34,3 +35,6 @@ langchain = { workspace = true }
 members = [
     "Langgraph/lang-graph-auth",
 ]
+
+[tool.setuptools]
+packages = ["src"]
