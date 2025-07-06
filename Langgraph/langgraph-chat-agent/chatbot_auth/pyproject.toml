@@ -5,13 +5,16 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "flask>=3.1.1",
-    "flask-socketio>=5.5.1",
-    "httpx>=0.28.1",
+    "dotenv>=0.9.9",
+    "ipykernel>=6.29.5",
+    "langchain>=0.3.26",
     "langchain-google-genai>=2.1.6",
+    "langchain-postgres>=0.0.15",
+    "langgraph>=0.5.1",
+    "langgraph-checkpoint-postgres>=2.0.21",
     "langgraph-cli[inmem]>=0.3.3",
     "langgraph-sdk>=0.1.72",
-    "python-dotenv>=1.1.1",
-    "python-engineio>=4.12.2",
-    "python-socketio>=5.13.0",
+    "mypy>=1.16.1",
+    "pillow>=11.3.0",
+    "psycopg-binary>=3.2.9",
 ]

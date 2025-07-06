@@ -5,3 +5,5 @@ python-engineio
 httpx
 python-dotenv
 langgraph-sdk
+langchain-postgres
+langgraph-checkpoint-postgres
