@@ -1,0 +1,167 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LangGraph Chatbot</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="auth-box">
+    <h2>Login or Sign Up</h2>
+    <input type="email" id="email" placeholder="Email" /><br />
+    <input type="password" id="password" placeholder="Password" /><br />
+    <button onclick="login()">Login</button>
+    <button onclick="signup()">Sign Up</button>
+    <p id="auth-message"></p>
+  </div>
+
+  <div id="chat-box" style="display: none;">
+    <div id="chat-header">
+      <h2>LangGraph Chat</h2>
+      <button onclick="logout()">Logout</button>
+    </div>
+    <div id="chat-history"></div>
+    <div id="chat-input">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+
+    const SUPABASE_URL = "{{ SUPABASE_URL }}";
+    const SUPABASE_ANON_KEY = "{{ SUPABASE_ANON_KEY }}";
+
+    // const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
+    // const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+    const LANGGRAPH_API = "http://localhost:2024";
+
+    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let token = null;
+    let thread_id = null;
+
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      console.log("🔐 Attempting login...");
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        showMessage("auth-message", "❌ " + error.message);
+        console.error("Login failed:", error);
+        return;
+      }
+
+      token = data.session.access_token;
+      console.log("✅ Logged in. Token:", token);
+
+      await startChat();
+    }
+
+    async function signup() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const { error } = await supabase.auth.signUp({ email, password });
+
+      if (error) {
+        showMessage("auth-message", "❌ " + error.message);
+      } else {
+        showMessage("auth-message", "✅ Check your email to confirm your account.");
+      }
+    }
+
+    async function startChat() {
+      try {
+        console.log("🚀 Starting chat...");
+        document.getElementById("auth-box").style.display = "none";
+        document.getElementById("chat-box").style.display = "block";
+
+        const res = await fetch(`${LANGGRAPH_API}/threads`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+        });
+
+        if (!res.ok) {
+          const errorBody = await res.text();
+          throw new Error(`Thread creation failed: ${res.status} ${errorBody}`);
+        }
+
+        const data = await res.json();
+        thread_id = data.thread_id;
+        console.log("✅ Thread created:", thread_id);
+      } catch (err) {
+        console.error("❌ Error starting chat:", err);
+        showMessage("auth-message", "❌ " + err.message);
+        document.getElementById("auth-box").style.display = "block";
+        document.getElementById("chat-box").style.display = "none";
+      }
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage("you", message);
+      input.value = "";
+
+      try {
+        const runRes = await fetch(`${LANGGRAPH_API}/runs/wait`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            thread_id: thread_id,
+            assistant_id: "agent",
+            input: { messages: [{ role: "user", content: message }] },
+            config: { configurable: { recursion_limit: 50 } },
+            checkpoint_during: true
+          }),
+        });
+
+        if (!runRes.ok) {
+          const errorBody = await runRes.text();
+          throw new Error(`Run failed: ${runRes.status} ${errorBody}`);
+        }
+
+        const runData = await runRes.json();
+        const reply = runData.messages.at(-1).content;
+        appendMessage("agent", reply);
+      } catch (err) {
+        console.error("❌ Error sending message:", err);
+        appendMessage("error", "❌ " + err.message);
+      }
+    }
+
+    function appendMessage(role, text) {
+      const history = document.getElementById("chat-history");
+      const div = document.createElement("div");
+      div.className = `message ${role}`;
+      div.textContent = `${role === "you" ? "You" : role === "agent" ? "Agent" : "Error"}: ${text}`;
+      history.appendChild(div);
+      history.scrollTop = history.scrollHeight;
+    }
+
+    function showMessage(id, message) {
+      document.getElementById(id).textContent = message;
+    }
+
+    function logout() {
+      token = null;
+      thread_id = null;
+      document.getElementById("chat-history").innerHTML = "";
+      document.getElementById("auth-box").style.display = "block";
+      document.getElementById("chat-box").style.display = "none";
+    }
+  </script>
+</body>
+</html>

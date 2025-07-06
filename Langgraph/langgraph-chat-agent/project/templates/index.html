@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login with Email (Supabase)</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h2>Signup / Login with Email</h2>
+
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
+
+  <h3>Call Protected API</h3>
+  <button onclick="callAdd()">Add 5 + 7</button>
+
+  <pre id="result"></pre>
+
+  <script>
+    const client = supabase.createClient(
+      'https://qmxrpsvorvhxgpeggesx.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFteHJwc3ZvcnZoeGdwZWdnZXN4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3NTQ1MjMsImV4cCI6MjA2NzMzMDUyM30.P_-icD8xOEjcHNbofwn8StIil4Kb7uJaeq_ySwPYsDc'
+    );
+
+    async function signup() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const { data, error } = await client.auth.signUp({ email, password });
+
+      if (error) {
+        document.getElementById("result").textContent = "Signup Error: " + error.message;
+      } else {
+        document.getElementById("result").textContent = "Signup successful! Check your email to confirm.";
+      }
+    }
+
+    async function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const { data, error } = await client.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        document.getElementById("result").textContent = "Login Error: " + error.message;
+      } else {
+        localStorage.setItem("token", data.session.access_token);
+        document.getElementById("result").textContent = "Logged in!";
+      }
+    }
+
+    async function callAdd() {
+      const token = localStorage.getItem("token");
+
+      const res = await fetch('/add', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ a: 5, b: 7 }),
+      });
+
+      const result = await res.json();
+      document.getElementById("result").textContent = JSON.stringify(result, null, 2);
+    }
+  </script>
+</body>
+</html>

@@ -1,21 +1,17 @@
 [project]
-name = "langgraph-chat-agent"
+name = "chatbot-auth"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "flask>=3.1.1",
+    "flask-socketio>=5.5.1",
     "httpx>=0.28.1",
-    "langchain>=0.3.26",
     "langchain-google-genai>=2.1.6",
-    "langgraph>=0.5.1",
     "langgraph-cli[inmem]>=0.3.3",
     "langgraph-sdk>=0.1.72",
     "python-dotenv>=1.1.1",
-]
-
-[tool.uv.workspace]
-members = [
-    "project",
-    "chatbot_auth",
+    "python-engineio>=4.12.2",
+    "python-socketio>=5.13.0",
 ]

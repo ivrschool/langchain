@@ -5,6 +5,7 @@
     },
     "env": ".env",
     "auth": {
-      "path": "src/security/authon.py:auth"
+      "path": "src/security/auth.py:auth"
     }
   }
+  

@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+jinja2
+httpx
+python-dotenv
+PyJWT
+jose
