@@ -16,3 +16,14 @@ langgraph_chat_agent.egg-info
 store.pckl
 store.vectore.pckl
 .DS_Store
+
+langgraph-chat-agent/.langgraph_api/store.vectors.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_retry_counter.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_checkpoint.1.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_checkpoint.2.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_checkpoint.3.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_ops.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_checkpoint.1.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_checkpoint.2.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_checkpoint.3.pckl
+langgraph-chat-agent/.langgraph_api/.langgraph_ops.pckl
