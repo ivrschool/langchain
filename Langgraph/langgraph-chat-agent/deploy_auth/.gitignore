@@ -1,0 +1,16 @@
+.env
+.DS_Store
+.langgraph_api/
+.langgraph_api/ 
+.venv/
+__pycache__/
+deploy_auth.egg-info/
+*.pyc
+*.pyo
+*.pyd
+*.pyw
+*.pyz
+*.pywz
+*.pyzw
+*.pyzwz
+*.pyzwzw    

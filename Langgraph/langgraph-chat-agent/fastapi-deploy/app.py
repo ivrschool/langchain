@@ -1,4 +1,4 @@
-# main.py
+# app.py
 
 import asyncio
 import os
@@ -62,8 +62,7 @@ async def run_chat(token: str):
             thread_id=thread["thread_id"],
             assistant_id="agent",
             input={"messages": [{"role": "user", "content": user_input}]},
-            config={"configurable": {"recursion_limit": 50}},
-            checkpoint_during=True,
+            config={"configurable": {"recursion_limit": 50}} 
         )
         reply = response["messages"][-1]["content"]
         print("Agent:", reply, "\n")
