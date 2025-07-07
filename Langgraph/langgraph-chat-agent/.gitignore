@@ -2,3 +2,17 @@
 .venv
 __pycache__
 langgraph_chat_agent.egg-info
+
+.langgraph_chat_agent.egg-info
+.langgraph_cehckpoint.db
+.langgraph_cehckpoint.db-shm
+.langgraph_cehckpoint.db-wal
+.langgraph_cehckpoint.db-journal
+.langgraph_cehckpoint.db-lock
+.langgraph_cehckpoint.db-trace
+.langgraph_cehckpoint.db-trace-lock
+.langgraph_cehckpoint.db-trace-lock-wal
+
+store.pckl
+store.vectore.pckl
+.DS_Store
