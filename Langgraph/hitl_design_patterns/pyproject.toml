@@ -7,5 +7,10 @@ requires-python = ">=3.13"
 dependencies = [
     "dotenv>=0.9.9",
     "ipykernel>=6.29.5",
+    "langchain",
+    "langchain-google-genai>=2.1.5",
     "langgraph>=0.4.8",
 ]
+
+[tool.uv.sources]
+langchain = { workspace = true }
