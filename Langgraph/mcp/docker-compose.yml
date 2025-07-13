@@ -1,0 +1,17 @@
+volumes:
+    langgraph-data:
+        driver: local
+services:
+  langgraph-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8123:8000"
+    env_file:
+      - .env
+    networks:
+      - my_network
+
+networks:
+  my_network:

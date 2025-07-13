@@ -1,19 +1,20 @@
 # main.py
 
 import asyncio
+import os
+import httpx
 from dotenv import load_dotenv
 from langgraph_sdk import get_client
 
 load_dotenv()
 
-
 async def run_chat():
     """Run the chatbot after successful login."""
     client = get_client(
-        url="http://localhost:2024",
+        url="http://localhost:8123",
     )
 
-    thread = await client.threads.create()
+    thread = {"thread_id": "8aacbde4-44e4-4de9-a2f2-cd344ff5e682"}#await client.threads.create()
 
     while True:
         user_input = input("You: ")
@@ -22,7 +23,7 @@ async def run_chat():
 
         response = await client.runs.wait(
             thread_id=thread["thread_id"],
-            assistant_id="agent",
+            assistant_id="task_maistro",
             input={"messages": [{"role": "user", "content": user_input}]},
             config={"configurable": {"recursion_limit": 50}} 
         )
@@ -31,9 +32,6 @@ async def run_chat():
 
 
 async def main():
-
-
-    print("✅ Start Chat successful!")
     await run_chat()
 
 

@@ -1,0 +1,18 @@
+{
+    "base_image": "langchain/langgraph-api",
+    "_INTERNAL_docker_tag": "3.12-cfb4da0",
+    "dockerfile_lines": [
+        "RUN mkdir -p /api/langgraph_storage && touch /api/langgraph_storage/__init__.py"
+    ],
+    "dockerfile_lines": [],
+    "graphs": {
+      "task_maistro": "./agent/task_maistro.py:graph"
+    },
+    "auth": {
+      "path": "./agent/auth/auth.py:auth"
+    },
+    "env": "./.env",
+    "dependencies": ["./agent/requirements.txt"]
+    
+    
+  }

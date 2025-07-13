@@ -9,9 +9,6 @@ auth = Auth()
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_SERVICE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 
-# POSTGRES_URI_CUSTOM=os.environ["POSTGRES_URI_CUSTOM"]
-# POSTGRES_URI=os.environ["POSTGRES_URI"]
-
 @auth.authenticate
 async def get_current_user(authorization: str | None):
     assert authorization

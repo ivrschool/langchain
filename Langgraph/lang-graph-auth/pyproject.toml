@@ -28,13 +28,5 @@ dev = [
     "langchain",
 ]
 
-[tool.uv.sources]
-langchain = { workspace = true }
-
-[tool.uv.workspace]
-members = [
-    "Langgraph/lang-graph-auth",
-]
-
 [tool.setuptools]
 packages = ["src"]

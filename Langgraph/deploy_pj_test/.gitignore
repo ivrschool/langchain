@@ -1,0 +1,6 @@
+cloudbuild.yaml
+notes.md
+.env
+myenv/
+.python-version
+.DS_Store

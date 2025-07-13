@@ -1,10 +1,15 @@
 # main.py
 
 import asyncio
+import os
+import httpx
 from dotenv import load_dotenv
 from langgraph_sdk import get_client
 
 load_dotenv()
+
+
+
 
 
 async def run_chat():
@@ -31,9 +36,6 @@ async def run_chat():
 
 
 async def main():
-
-
-    print("✅ Start Chat successful!")
     await run_chat()
 
 

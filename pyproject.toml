@@ -32,5 +32,5 @@ langchain = { workspace = true }
 
 [tool.uv.workspace]
 members = [
-    "Langgraph/lang-graph-auth",
+    "Langgraph/hitl_design_patterns",
 ]

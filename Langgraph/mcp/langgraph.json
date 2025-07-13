@@ -1,0 +1,12 @@
+{
+    "dockerfile_lines": [],
+    "graphs": {
+      "task_maistro": "./agent/graph.py:graph",
+      "description": "This is a simple chat agent which invokes llm for generating text."
+    },
+    "python_version": "3.12",
+    "dependencies": [
+      "./agent"
+    ],
+    "env": "./.env"
+  }

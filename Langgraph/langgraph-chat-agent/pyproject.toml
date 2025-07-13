@@ -19,4 +19,5 @@ members = [
     "project",
     "chatbot_auth",
     "deploy_auth",
+    "chatbot_auth_deploy",
 ]
